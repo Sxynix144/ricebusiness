@@ -20,7 +20,7 @@ function computeTotal() {
             <option value="">Select Rice</option>
             @foreach($rices as $rice)
                 <option value="{{ $rice->id }}" data-price="{{ $rice->price_per_kg }}">
-                    {{ $rice->name }} - ${{ $rice->price_per_kg }}/kg (Stock: {{ $rice->stock_quantity }}kg)
+                    {{ $rice->name }} - Php:{{ $rice->price_per_kg }}/kg (Stock: {{ $rice->stock_quantity }}kg)
                 </option>
             @endforeach
         </select><br>
