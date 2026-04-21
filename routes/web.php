@@ -91,3 +91,26 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/payments/{order}', [PaymentController::class, 'store'])->name('payments.store');
     Route::get('/payments/history', [PaymentController::class, 'history'])->name('payments.history');
 });
+Route::get('/db-info', function () {
+    return [
+        'database' => DB::connection()->getDatabaseName(),
+        'host' => config('database.connections.mysql.host'),
+        'table_exists' => Schema::hasTable('rice_items'),
+        'row_count' => \App\Models\RiceItem::count(),
+    ];
+});
+
+use Illuminate\Support\Facades\DB;
+use App\Models\RiceItem;
+
+Route::get('/debug-db', function () {
+    return [
+        'connection_name' => config('database.default'),
+        'database_name' => DB::connection()->getDatabaseName(),
+        'host' => config('database.connections.mysql.host'),
+        'table_exists' => \Schema::hasTable('rice_items'),
+        'row_count_from_model' => RiceItem::count(),
+        'all_rows' => RiceItem::all()->toArray(),
+        'raw_sql_count' => DB::table('rice_items')->count(),
+    ];
+});
