@@ -66,7 +66,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
     
     
-});
+    });
+    Route::get('/', function () {
+        return redirect('/login');
+    });
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
