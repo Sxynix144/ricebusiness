@@ -13,7 +13,7 @@
         <tr>
             <td>{{ $payment->order_id }}</td>
             <td>{{ $payment->order->riceItem->name }}</td>
-            <td>${{ number_format($payment->amount_paid,2) }}</td>
+            <td>Php: {{ number_format($payment->amount_paid,2) }}</td>
             <td>{{ $payment->payment_date }}</td>
         </tr>
         @endforeach
